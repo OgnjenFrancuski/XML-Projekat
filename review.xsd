@@ -1,2 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"> </xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.team10.org/2018/review"
+    xmlns:sci-common="http://www.team10.org/2018/common"
+    xmlns:sci-review="http://www.team10.org/2018/review">
+    <xs:import namespace="http://www.team10.org/2018/common" schemaLocation="common.xsd"/>
+    <xs:element name="review">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element maxOccurs="unbounded" name="authorComment">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="qa">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="question" type="xs:string"/>
+                                        <xs:element minOccurs="0" name="answer" type="xs:string"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element maxOccurs="unbounded" name="editorComment">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="text" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="reviewer" type="sci-common:reviewer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

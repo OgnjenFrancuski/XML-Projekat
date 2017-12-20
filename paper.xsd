@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://www.team10.org/2018/Paper"
-    xmlns:sci-pap="http://www.team10.org/2018/Paper"
-    xmlns:sci-common="http://www.team10.org/2018/common">
+    xmlns:sci-common="http://www.team10.org/2018/common"
+    xmlns:sci-paper="http://www.team10.org/2018/Paper">
 
     <xs:import namespace="http://www.team10.org/2018/common" schemaLocation="common.xsd"/>
     <xs:element name="paper">
@@ -15,16 +15,17 @@
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="abstract" type="xs:string"/>
-                            <xs:element name="introduction" type="sci-pap:chapter"/>
-                            <xs:element maxOccurs="unbounded" name="chapter" type="sci-pap:chapter"/>
-                            <xs:element name="conclusion" type="sci-pap:chapter"/>
+                            <xs:element name="introduction" type="sci-paper:chapter"/>
+                            <xs:element maxOccurs="unbounded" name="chapter"
+                                type="sci-paper:chapter"/>
+                            <xs:element name="conclusion" type="sci-paper:chapter"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
                 <xs:element maxOccurs="unbounded" minOccurs="0" name="reference"
-                    type="sci-pap:reference"/>
+                    type="sci-paper:reference"/>
             </xs:sequence>
-            <xs:attribute name="revisionNumber" type="sci-pap:revisionNumber"/>
+            <xs:attribute name="revisionNumber" type="sci-paper:revisionNumber"/>
         </xs:complexType>
     </xs:element>
     <xs:simpleType name="revisionNumber">
@@ -32,7 +33,7 @@
     </xs:simpleType>
     <xs:complexType name="title">
         <xs:sequence>
-            <xs:element name="indexNumber" type="sci-pap:indexNumber"/>
+            <xs:element name="indexNumber" type="sci-paper:indexNumber"/>
             <xs:element name="name" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
@@ -43,38 +44,38 @@
     </xs:simpleType>
     <xs:complexType name="chapter">
         <xs:sequence>
-            <xs:element name="title" type="sci-pap:title"/>
-            <xs:element maxOccurs="1" minOccurs="1" name="paragraphs" type="sci-pap:paragraphs"/>
-            <xs:element maxOccurs="1" name="subchapters" type="sci-pap:subchapters"/>
+            <xs:element name="title" type="sci-paper:title"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="paragraphs" type="sci-paper:paragraphs"/>
+            <xs:element maxOccurs="1" name="subchapters" type="sci-paper:subchapters"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="paragraphs">
         <xs:sequence>
-            <xs:element name="paragraph" type="sci-pap:paragraph"/>
+            <xs:element name="paragraph" type="sci-paper:paragraph"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="subchapters">
         <xs:sequence>
-            <xs:element name="subchapher" type="sci-pap:chapter"/>
+            <xs:element name="subchapher" type="sci-paper:chapter"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="paragraph">
         <xs:sequence maxOccurs="unbounded">
-            <xs:element name="paragraphContent" type="sci-pap:paragraphContent"/>
+            <xs:element name="paragraphContent" type="sci-paper:paragraphContent"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="paragraphContent">
         <xs:choice>
-            <xs:element name="reference" type="sci-pap:reference"/>
-            <xs:element name="table" type="sci-pap:table"/>
-            <xs:element name="text" type="sci-pap:text"/>
-            <xs:element name="picture" type="sci-pap:picture"/>
-            <xs:element name="citation" type="sci-pap:citation"/>
+            <xs:element name="reference" type="sci-paper:reference"/>
+            <xs:element name="table" type="sci-paper:table"/>
+            <xs:element name="text" type="sci-paper:text"/>
+            <xs:element name="picture" type="sci-paper:picture"/>
+            <xs:element name="citation" type="sci-paper:citation"/>
         </xs:choice>
     </xs:complexType>
     <xs:complexType name="text">
         <xs:sequence>
-            <xs:element maxOccurs="1" name="textElement" type="sci-pap:textElement"/>
+            <xs:element maxOccurs="1" name="textElement" type="sci-paper:textElement"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="textElement">
@@ -86,7 +87,7 @@
     </xs:complexType>
     <xs:complexType name="table">
         <xs:sequence>
-            <xs:element name="title" type="sci-pap:title"/>
+            <xs:element name="title" type="sci-paper:title"/>
             <xs:element maxOccurs="unbounded" name="row">
                 <xs:complexType>
                     <xs:choice>
@@ -95,12 +96,12 @@
                     </xs:choice>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="reference" type="sci-pap:reference"/>
+            <xs:element name="reference" type="sci-paper:reference"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="picture">
         <xs:sequence>
-            <xs:element name="title" type="sci-pap:title"/>
+            <xs:element name="title" type="sci-paper:title"/>
             <xs:element name="uri" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
@@ -113,7 +114,7 @@
     <xs:complexType name="citation">
         <xs:sequence>
             <xs:element name="text" type="xs:string"/>
-            <xs:element name="author" type="sci-pap:citationAuthor"/>
+            <xs:element name="author" type="sci-paper:citationAuthor"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="citationAuthor">

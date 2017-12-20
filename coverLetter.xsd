@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.team10.org/2018/coverLetter"
+    xmlns:sci-common="http://www.team10.org/2018/common"
+    xmlns:sci-letter="http://www.team10.org/2018/coverLetter">
+    <xs:import namespace="http://www.team10.org/2018/common" schemaLocation="common.xsd"/>
+    <xs:element name="coverLetter">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="info">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="author" type="sci-common:author"/>
+                            <xs:element name="editor" type="sci-common:editor"/>
+                            <xs:element name="date" type="xs:dateTime"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="content">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="paragraphs" type="sci-letter:paragraphs"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="reviewers">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="suggested">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                                            name="reviewer" type="sci-common:reviewer"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="unfavorable">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                                            name="reviewer" type="sci-common:reviewer"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="signature" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="paragraphs">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="paragraph" type="sci-letter:paragraphContent"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="paragraphContent">
+        <xs:choice>
+            <xs:element name="text" type="xs:string"/>
+            <xs:element name="citation" type="sci-letter:citation"/>
+            <xs:element name="result" type="xs:string"/>
+            <xs:element name="link" type="xs:string"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="citation">
+        <xs:sequence>
+            <xs:element name="text" type="xs:string"/>
+            <xs:element name="author" type="sci-letter:citationAuthor"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="citationAuthor">
+        <xs:sequence>
+            <xs:element form="qualified" name="author" type="sci-common:user"/>
+            <xs:element name="year" type="xs:gYear"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -65,8 +65,24 @@
     <xs:complexType name="editor">
         <xs:complexContent>
             <xs:extension base="sci-common:reviewer">
-                <xs:sequence/>
+                <xs:sequence>
+                    <xs:element name="type">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="handling"/>
+                                <xs:enumeration value="chief"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="journal" type="sci-common:journal"/>
+                </xs:sequence>
             </xs:extension>
         </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="journal">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="address" type="sci-common:address"/>
+        </xs:sequence>
     </xs:complexType>
 </xs:schema>
